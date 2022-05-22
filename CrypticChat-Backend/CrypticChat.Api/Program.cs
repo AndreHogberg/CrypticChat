@@ -1,3 +1,5 @@
+using CrypticChat.Api.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,5 +23,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseEndpoints(e => e.MapHub<ChatHub>("/connect"));
 app.Run();

@@ -1,6 +1,16 @@
-﻿namespace CrypticChat.Api.Hubs;
+﻿using Microsoft.AspNetCore.SignalR;
 
-public class ChatHub
+namespace CrypticChat.Api.Hubs;
+
+public class ChatHub : Hub
 {
-    
+    public ChatHub()
+    {
+        
+    }
+
+    public async Task ConnectUsers()
+    {
+        
+    }
 }
