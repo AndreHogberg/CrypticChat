@@ -14,4 +14,8 @@
       <Folder Include="Controllers" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CrypticChat.Application\CrypticChat.Application.csproj" />
+    </ItemGroup>
+
 </Project>
