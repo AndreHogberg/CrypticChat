@@ -1,5 +1,8 @@
-﻿using CrypticChat.Application.dtos;
+﻿using System.Security.Claims;
+using CrypticChat.Api.Services;
+using CrypticChat.Application.dtos;
 using CrypticChat.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +15,13 @@ public class UserController : ControllerBase
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
+    private readonly TokenService _tokenService;
 
-    public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+    public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, TokenService tokenService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _tokenService = tokenService;
     }
     [HttpGet("login")]
     public async Task<IActionResult> Login(LoginDto loginDto)
@@ -48,8 +53,8 @@ public class UserController : ControllerBase
             return ValidationProblem();
         }
 
-        var user = new AppUser()
-        {
+        var user = new AppUser
+        { 
             UserName = registerDto.Username,
             Email = registerDto.Email
         };
@@ -60,5 +65,28 @@ public class UserController : ControllerBase
             return Ok();
         }
         return BadRequest("There was a problem registering the user");
+    }
+
+    /// <summary>
+    /// This function will check if user token is authorized, create new token and send back account details. 
+    /// </summary>
+    /// <returns></returns>
+    [Authorize]
+    [HttpGet("/checkuser")]
+    public async Task<ActionResult<UserDto>> CheckUser()
+    {   
+        var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+
+        return Ok(CreateUserObject(user));
+    }
+
+    private UserDto CreateUserObject(AppUser user)
+    {
+        return new UserDto
+        {
+            Email = user.Email,
+            Username = user.UserName,
+            Token = _tokenService.CreateToken(user)
+        };
     }
 }
