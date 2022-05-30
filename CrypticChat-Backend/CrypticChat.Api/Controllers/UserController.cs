@@ -23,7 +23,14 @@ public class UserController : ControllerBase
         _signInManager = signInManager;
         _tokenService = tokenService;
     }
-    [HttpGet("login")]
+
+    [HttpGet("connectstring")]
+    public ActionResult<string> DbString()
+    {
+        var dbString = Environment.GetEnvironmentVariable("CRYPTIC_DB");
+        return Ok(dbString);
+    }
+    [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto loginDto)
     {
         var user = await _userManager.FindByEmailAsync(loginDto.Email);
@@ -33,12 +40,12 @@ public class UserController : ControllerBase
 
         if (result.Succeeded)
         {
-            return Ok();
+            return Ok(CreateUserObject(user));
         }
 
         return Unauthorized();
     }
-
+    [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto registerDto)
     {
         if (await _userManager.Users.AnyAsync(x => x.Email == registerDto.Email))
@@ -62,7 +69,7 @@ public class UserController : ControllerBase
         var result = await _userManager.CreateAsync(user, registerDto.Password);
         if (result.Succeeded)
         {
-            return Ok();
+            return Ok(CreateUserObject(user));
         }
         return BadRequest("There was a problem registering the user");
     }

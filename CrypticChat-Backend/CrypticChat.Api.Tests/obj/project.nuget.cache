@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qes2ApwjLqChiudn28G+hi3MwSZfCkwKJ989puEMU0oabk8mdpIR1SWdfpy5jCdoDmpLT5h9Q7cKoqR8+ofEXQ==",
+  "dgSpecHash": "XPG6uLhJB8R1HQ5M+B2U1H4+3vHKzdGIdF/HX4Gph1g6N5zmQcYELIWVLn0dMeJYfDEEpzRsSa+VTLBcgdznlw==",
   "success": true,
   "projectFilePath": "C:\\examens\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Api.Tests\\CrypticChat.Api.Tests.csproj",
   "expectedPackageFiles": [

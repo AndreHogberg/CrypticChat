@@ -1,6 +1,6 @@
 using System.Text;
-using CrypticChat.Api.Hubs;
 using CrypticChat.Api.Services;
+using CrypticChat.Application.dtos;
 using CrypticChat.Domain;
 using CrypticChat.Persistance;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,7 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql());
+var dbString = Environment.GetEnvironmentVariable("CRYPTIC_DB");
+if(dbString is not null){
+    builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql(dbString));
+}
+
+
+builder.Services.AddSignalR();
 
 builder.Services.AddIdentityCore<AppUser>()
     .AddEntityFrameworkStores<DataContext>()
@@ -40,11 +46,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
 
@@ -53,5 +57,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseEndpoints(e => e.MapHub<ChatHub>("/connect"));
 app.Run();
