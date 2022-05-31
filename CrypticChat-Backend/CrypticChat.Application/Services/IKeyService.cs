@@ -4,6 +4,6 @@ namespace CrypticChat.Application.Services;
 
 public interface IKeyService
 {
-    Task<bool> InsertKey(KeyDto keyDto, Guid userId);
-    Task<KeyDto> GetKey(Guid friendId);
+    Task<bool> InsertKey(KeyDto keyDto, string userId);
+    Task<KeyDto> GetKey(string friendId);
 }

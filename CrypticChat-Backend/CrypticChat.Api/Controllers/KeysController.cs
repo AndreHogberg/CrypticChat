@@ -29,7 +29,7 @@ public class KeysController : ControllerBase
         {
             return Unauthorized();
         }
-        var result = await _keyService.InsertKey(keyDto, Guid.Parse(user.Id));
+        var result = await _keyService.InsertKey(keyDto, user.Id);
 
         if (result)
         {
@@ -40,7 +40,7 @@ public class KeysController : ControllerBase
     }
 
     [HttpGet("getKey")]
-    public async Task<ActionResult<KeyDto>> FindPublicKey(Guid friendId)
+    public async Task<ActionResult<KeyDto>> FindPublicKey(string friendId)
     {
         var result = await _keyService.GetKey(friendId);
 

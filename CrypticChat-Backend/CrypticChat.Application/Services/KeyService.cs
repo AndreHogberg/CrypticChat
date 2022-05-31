@@ -15,7 +15,7 @@ public class KeyService : IKeyService
         _dataContext = dataContext;
     }
 
-    public async Task<bool> InsertKey(KeyDto keyDto, Guid userId)
+    public async Task<bool> InsertKey(KeyDto keyDto, string userId)
     {
         var key = await _dataContext.Keys.FirstOrDefaultAsync(x => x.UserId == userId);
         if (key is not null)
@@ -27,7 +27,7 @@ public class KeyService : IKeyService
         {
             _dataContext.Keys.Add(new PublicKey()
             {
-                KeyId = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 UserId = userId,
                 Value = keyDto.Value
             });
@@ -35,7 +35,7 @@ public class KeyService : IKeyService
         return await _dataContext.SaveChangesAsync() > 0;
     }
 
-    public async Task<KeyDto> GetKey(Guid friendId)
+    public async Task<KeyDto> GetKey(string friendId)
     {
         var key = await _dataContext.Keys.SingleOrDefaultAsync(x => x.UserId == friendId);
         if (key is not null)
