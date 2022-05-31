@@ -5973,19 +5973,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\André\\.nuget\\packages\\": {}
+    "C:\\Users\\oscar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\examens\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Api.Tests\\CrypticChat.Api.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Api.Tests\\CrypticChat.Api.Tests.csproj",
       "projectName": "CrypticChat.Api.Tests",
-      "projectPath": "C:\\examens\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Api.Tests\\CrypticChat.Api.Tests.csproj",
-      "packagesPath": "C:\\Users\\André\\.nuget\\packages\\",
-      "outputPath": "C:\\examens\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Api.Tests\\obj\\",
+      "projectPath": "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Api.Tests\\CrypticChat.Api.Tests.csproj",
+      "packagesPath": "C:\\Users\\oscar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Api.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\André\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\oscar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6047,7 +6047,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
