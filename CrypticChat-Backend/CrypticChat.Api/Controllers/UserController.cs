@@ -23,13 +23,6 @@ public class UserController : ControllerBase
         _signInManager = signInManager;
         _tokenService = tokenService;
     }
-
-    [HttpGet("connectstring")]
-    public ActionResult<string> DbString()
-    {
-        var dbString = Environment.GetEnvironmentVariable("CRYPTIC_DB");
-        return Ok(dbString);
-    }
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto loginDto)
     {
