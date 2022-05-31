@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  csharp:
+    build:
+      context: .
+      target: final
+    container_name: cryptic-backend
+    image: andrehogberg/cryptic-backend
+    ports:
+      - 80:80
+    depends_on:
+      - cryptic_db
+    environment:
+      - CRYPTIC_DB=User ID=postgres;Password=postgres;Host=cryptic_db;port=5432;Database=postgres
+
+  cryptic_db:
+    image: postgres 
+    container_name: cryptic-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+        
