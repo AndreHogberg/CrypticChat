@@ -4,7 +4,6 @@ using CrypticChat.Application.Services;
 using CrypticChat.Domain;
 using CrypticChat.Persistance;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

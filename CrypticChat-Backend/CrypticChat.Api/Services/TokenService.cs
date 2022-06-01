@@ -9,7 +9,6 @@ namespace CrypticChat.Api.Services;
 public class TokenService
 {
     private readonly IConfiguration _config;
-
     public TokenService(IConfiguration config)
     {
         _config = config;
@@ -24,8 +23,8 @@ public class TokenService
             new(ClaimTypes.Email, user.Email),
             new(ClaimTypes.NameIdentifier, user.Id)
         };
-
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretToken"]));
+        var secret = _config["SecretToken"];
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
         var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
         var tokenDescriptor = new SecurityTokenDescriptor

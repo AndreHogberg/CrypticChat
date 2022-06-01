@@ -1,4 +1,4 @@
-export const createCryptoKeyPair = async() => {
+export const createCryptoKeyPair = async(): Promise<CryptoKeyPair> => {
     return await window.crypto.subtle.generateKey({
         name: "RSA-OAEP",
         modulusLength: 4096,
@@ -9,10 +9,22 @@ export const createCryptoKeyPair = async() => {
     ["encrypt", "decrypt"]) as CryptoKeyPair
 }
 
-export const encryptMessage = (message: string, key: CryptoKey) => {
+export const encryptMessage = async (message: string, key: CryptoKey): Promise<ArrayBuffer> => {
+    let encodedMessage = new TextEncoder().encode(message);
 
+    return await window.crypto.subtle.encrypt({
+        name: "RSA-OAEP"
+    },
+    key,
+    encodedMessage ) as ArrayBuffer
 }
 
-export const decryptMessage = (cipherText: ArrayBuffer, key: CryptoKey) => {
+export const decryptMessage = async (cipherText: ArrayBuffer, key: CryptoKey): Promise<string> => {
+    let decryptedMessage = await window.crypto.subtle.decrypt({
+        name: "RSA-OAEP"
+    },
+    key,
+    cipherText) as ArrayBuffer
 
+    return new TextDecoder().decode(decryptedMessage);
 }
