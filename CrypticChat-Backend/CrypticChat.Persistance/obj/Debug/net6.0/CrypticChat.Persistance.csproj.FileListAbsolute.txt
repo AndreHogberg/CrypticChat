@@ -1,0 +1,17 @@
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/bin/Debug/net6.0/CrypticChat.Persistance.deps.json
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/bin/Debug/net6.0/CrypticChat.Persistance.runtimeconfig.json
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/bin/Debug/net6.0/CrypticChat.Persistance.dll
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/bin/Debug/net6.0/CrypticChat.Persistance.pdb
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/bin/Debug/net6.0/CrypticChat.Domain.dll
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/bin/Debug/net6.0/CrypticChat.Domain.pdb
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.csproj.AssemblyReference.cache
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.GeneratedMSBuildEditorConfig.editorconfig
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.AssemblyInfoInputs.cache
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.AssemblyInfo.cs
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.csproj.CoreCompileInputs.cache
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.csproj.CopyComplete
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.dll
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/refint/CrypticChat.Persistance.dll
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.pdb
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/CrypticChat.Persistance.genruntimeconfig.cache
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Persistance/obj/Debug/net6.0/ref/CrypticChat.Persistance.dll

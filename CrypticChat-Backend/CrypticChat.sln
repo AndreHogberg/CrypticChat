@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrypticChat.Application", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrypticChat.Persistance", "CrypticChat.Persistance\CrypticChat.Persistance.csproj", "{C0E32F81-1D1D-41DA-BBFB-C9E7F7BDCA81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrypticChat.Api.Tests", "CrypticChat.Api.Tests\CrypticChat.Api.Tests.csproj", "{0167D3A4-D8EE-4B1D-9605-89473BCA122B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +30,5 @@ Global
 		{C0E32F81-1D1D-41DA-BBFB-C9E7F7BDCA81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0E32F81-1D1D-41DA-BBFB-C9E7F7BDCA81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0E32F81-1D1D-41DA-BBFB-C9E7F7BDCA81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0167D3A4-D8EE-4B1D-9605-89473BCA122B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0167D3A4-D8EE-4B1D-9605-89473BCA122B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0167D3A4-D8EE-4B1D-9605-89473BCA122B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0167D3A4-D8EE-4B1D-9605-89473BCA122B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

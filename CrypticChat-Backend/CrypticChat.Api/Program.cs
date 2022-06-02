@@ -1,4 +1,5 @@
 using System.Text;
+using CrypticChat.Api.Hubs;
 using CrypticChat.Api.Services;
 using CrypticChat.Application.Services;
 using CrypticChat.Domain;
@@ -49,23 +50,16 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsDevelopment())
 {
-    var services = scope.ServiceProvider;
-
-    var context = services.GetRequiredService<DataContext>();    
-    context.Database.Migrate();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
-
-
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseEndpoints(e => e.MapHub<ChatHub>("/connect"));
 app.Run();

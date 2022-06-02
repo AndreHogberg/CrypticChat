@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj": {}
+  },
+  "projects": {
+    "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj",
+        "projectName": "CrypticChat.Domain",
+        "projectPath": "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj",
+        "packagesPath": "/home/ark/.nuget/packages/",
+        "outputPath": "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ark/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.5, 6.0.5]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

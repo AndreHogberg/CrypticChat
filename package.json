@@ -1,0 +1,19 @@
+{
+  "name": "crypticchat",
+  "version": "1.0.0",
+  "description": "A small end-to-end encrypted chat program written with Tauri and .NET",
+  "main": "main.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreHogberg/CrypticChat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreHogberg/CrypticChat/issues"
+  },
+  "homepage": "https://github.com/AndreHogberg/CrypticChat#readme"
+}
