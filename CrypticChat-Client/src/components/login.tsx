@@ -18,7 +18,7 @@ async function handleButtonClick(e) {
   result = await result.json();
 }
 
-const login = () => {
+const Login = () => {
   return (
     <div>
       <input onChange={(e) => setUsername(e.target.value)} required />
@@ -28,4 +28,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
