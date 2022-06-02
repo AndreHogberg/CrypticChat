@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useAppDispatch } from "../redux/hooks";
 import { setToken } from "../redux/slices/userSlice";
 
 const Register = () => {
@@ -8,15 +9,15 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleButtonClick(e: SubmitEvent) {
-    e.preventDefault;
+  const dispatch = useAppDispatch()
+
+  async function handleButtonClick() {
     let user = { username: username, email: email, password: password };
 
     let register = await axios.post<{email:string, username: string, token: string}>('http://localhost:80/api/User/register', user);
     console.log(register);
     window.localStorage.setItem("token", register.data.token)
-    setToken(register.data.token)
-
+    dispatch(setToken(register.data.token))
   }
 
   return (

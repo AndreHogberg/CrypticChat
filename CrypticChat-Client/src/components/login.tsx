@@ -4,9 +4,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleButtonClick(e: SubmitEvent) {
-    e.preventDefault;
-
+  async function handleButtonClick() {
     let user = { email: username, password: password };
     console.log(user);
     
