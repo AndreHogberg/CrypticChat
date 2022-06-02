@@ -6,6 +6,5 @@ export default function SideBarHeader(){
             <div className="">CrypticChat</div>
             <div><Link to={"/add"}>Add someone</Link></div>
         </div>
-
         )
 }

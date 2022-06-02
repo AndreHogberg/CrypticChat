@@ -8,6 +8,7 @@ import SideBar from './components/SideBar/SideBar'
 import Login from './components/Login'
 import Chat from './components/SideBar/Chat'
 import Add from './components/Add'
+import Welcome from './components/Welcome'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register/>}/>
           <Route path="/" element={<Layout />}>
+            <Route index element={<Welcome />}/>
             <Route path=':id' element={<Chat/>}/> 
             <Route path="add" element={<Add/>}/>
           </Route>
