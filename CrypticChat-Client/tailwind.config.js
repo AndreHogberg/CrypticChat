@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {},
     colors: { 
-      'sidebar-purple': '#615EDC',
+      'sidebar-gray': '#333333',
+      'main-gray': "#717171",
       'white': "#FFFFFF",
       'black': "#000000"
     }

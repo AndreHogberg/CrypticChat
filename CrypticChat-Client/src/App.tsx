@@ -22,7 +22,6 @@ function App() {
             <Route path="add" element={<Add/>}/>
           </Route>
         </Routes>
-
     </div>
   )
 }
