@@ -10,3 +10,15 @@ Figma Design: https://www.figma.com/file/Q0Mbgy0aVS7sr9Cc8u37ac/CrypticChat-Draf
 
 
 Tauri Documentation: https://tauri.studio/v1/api/config
+
+
+# Commands
+
+Requires dotnet tools installed.
+
+* dotnet tool install --global dotnet-ef
+
+```
+Commands
+```
+* dotnet ef migrations add --project ./CrypticChat.Persistance --startup-project ./CrypticChat.Api

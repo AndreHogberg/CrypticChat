@@ -10,4 +10,6 @@ public class DataContext : IdentityDbContext<AppUser>
     {
         
     }
+
+    public DbSet<PublicKey> Keys { get; set; }
 }

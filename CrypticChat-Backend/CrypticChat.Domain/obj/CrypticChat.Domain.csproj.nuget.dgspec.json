@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Domain\\CrypticChat.Domain.csproj": {}
+    "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Domain\\CrypticChat.Domain.csproj": {
+    "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Domain\\CrypticChat.Domain.csproj",
+        "projectUniqueName": "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj",
         "projectName": "CrypticChat.Domain",
-        "projectPath": "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Domain\\CrypticChat.Domain.csproj",
-        "packagesPath": "C:\\Users\\oscar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\oscar\\Desktop\\AxCrypt\\CrypticChat\\CrypticChat-Backend\\CrypticChat.Domain\\obj\\",
+        "projectPath": "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/CrypticChat.Domain.csproj",
+        "packagesPath": "/home/ark/.nuget/packages/",
+        "outputPath": "/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\oscar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/ark/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -59,12 +57,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.5, 6.0.5]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
         }
       }
     }

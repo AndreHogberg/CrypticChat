@@ -1,0 +1,12 @@
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/bin/Debug/net6.0/CrypticChat.Domain.deps.json
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/bin/Debug/net6.0/CrypticChat.Domain.dll
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/bin/Debug/net6.0/CrypticChat.Domain.pdb
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/CrypticChat.Domain.csproj.AssemblyReference.cache
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/CrypticChat.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/CrypticChat.Domain.AssemblyInfoInputs.cache
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/CrypticChat.Domain.AssemblyInfo.cs
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/CrypticChat.Domain.csproj.CoreCompileInputs.cache
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/CrypticChat.Domain.dll
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/refint/CrypticChat.Domain.dll
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/CrypticChat.Domain.pdb
+/home/ark/Projects/Examens/CrypticChat/CrypticChat-Backend/CrypticChat.Domain/obj/Debug/net6.0/ref/CrypticChat.Domain.dll

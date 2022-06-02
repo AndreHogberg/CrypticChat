@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "exi8vMcV3SE6Qhd5S1RjYUmywXG5SBcv3hnyXzjObBM=",
+  "Source": "CrypticChat.Api",
+  "BasePath": "_content/CrypticChat.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
