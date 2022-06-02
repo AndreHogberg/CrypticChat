@@ -5,13 +5,13 @@ import type { RootState } from "../store";
 // Define a type for the slice state
 interface userState {
   userName: string;
-  token: string;
+  token: string | null;
 }
 
 // Define the initial state using that type
 const initialState: userState = {
   userName: "",
-  token: "",
+  token: window.localStorage.getItem("token"),
 };
 
 export const userSlice = createSlice({
