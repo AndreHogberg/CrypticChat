@@ -56,10 +56,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetService<DataContext>();
+    context.Database.Migrate();
+}
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseEndpoints(e => e.MapHub<ChatHub>("/connect"));
 app.Run();
