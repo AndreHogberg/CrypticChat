@@ -18,8 +18,8 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/" element={<Layout />}>
             <Route index element={<Welcome />}/>
-            <Route path=':id' element={<Chat/>}/> 
-            <Route path="add" element={<Add/>}/>
+            <Route path=':id' element={<Chat />}/> 
+            <Route path="add" element={<Add />}/>
           </Route>
         </Routes>
     </div>
