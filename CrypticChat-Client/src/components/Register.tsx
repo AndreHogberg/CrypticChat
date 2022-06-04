@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { useAppDispatch } from "../redux/hooks";
-import { setToken } from "../redux/slices/userSlice";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -21,7 +20,6 @@ const Register = () => {
     }>("http://localhost:80/api/User/register", user);
     console.log(register);
     window.localStorage.setItem("token", register.data.token);
-    dispatch(setToken(register.data.token));
   }
 
   return (

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import {MdLogout} from "react-icons/md"
 export default function SideBarHeader(){
+    
     return(
         <div className="flex flex-row bg-black p-2 bg-opacity-30 text-white w-full space-x-2 h-1/6">
             <div className="flex flex-col h-full space-y-4 w-2/4">

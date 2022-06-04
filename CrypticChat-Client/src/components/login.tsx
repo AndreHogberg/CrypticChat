@@ -1,23 +1,23 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { UserDetails } from "../lib/models/UserDetails";
+import agent from '../lib/agent'
+import { useAppSelector } from "../redux/hooks";
+import userSlice, { loginUser } from "../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
   async function handleButtonClick() {
     let user = { email: username, password: password };
-    console.log(user);
-
-    let result = await fetch("http://localhost:80/api/User/login", {
-      method: "POST",
-      headers: {
-        Accept: "text/plain",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    result = await result.json();
+    let userDetails = await agent.Account.login(user);
+    if(userDetails){
+      dispatch(loginUser(userDetails));
+    }
   }
   return (
     <div className="w-screen h-screen bg-gradient-to-br from-purple-300 to-blue-300 pt-12 md:pt20 pb-6 px-2 md:px-0">
