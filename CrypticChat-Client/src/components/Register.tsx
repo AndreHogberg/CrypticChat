@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import agent from "../lib/agent";
 import { useAppDispatch } from "../redux/hooks";
+import { loginUser } from "../redux/slices/userSlice";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -12,14 +14,12 @@ const Register = () => {
 
   async function handleButtonClick() {
     let user = { username: username, email: email, password: password };
+    if(confirmPassword === password){
+      let register = await agent.Account.register(user);
 
-    let register = await axios.post<{
-      email: string;
-      username: string;
-      token: string;
-    }>("http://localhost:80/api/User/register", user);
-    console.log(register);
-    window.localStorage.setItem("token", register.data.token);
+      dispatch(loginUser(register))
+    }
+
   }
 
   return (
