@@ -25,6 +25,7 @@ export const userSlice = createSlice({
       state.token = action.payload.token;
       state.Authenticated = true;
       state.userName = action.payload.email;
+      window.localStorage.setItem("token", action.payload.token);
     },
     logout: (state) => {
       state.Authenticated = false;
@@ -38,7 +39,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loginUser } = userSlice.actions;
+export const { loginUser, logout } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const getUserName = (state: RootState) => state.user.userName;

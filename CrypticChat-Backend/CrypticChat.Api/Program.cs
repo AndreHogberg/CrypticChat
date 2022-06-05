@@ -28,7 +28,7 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+        policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
     });
 });
 
@@ -70,11 +70,11 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-app.UseCors("AllowAll");
+
 app.UseAuthentication();
-
+app.UseCors("AllowAll");
 app.UseAuthorization();
 
 app.MapControllers();

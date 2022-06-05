@@ -1,11 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7e3d02b5_002D34a5_002D4c1d_002D8192_002D1aa540e689d7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreateJWTTokenForAppUser #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::0167D3A4-D8EE-4B1D-9605-89473BCA122B::net6.0::CrypticChat.Api.Tests.CrypticChatApiTests.CreateJWTTokenForAppUser&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7e3d02b5_002D34a5_002D4c1d_002D8192_002D1aa540e689d7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreateJWTTokenForAppUser #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::0167D3A4-D8EE-4B1D-9605-89473BCA122B::net6.0::CrypticChat.Api.Tests.CrypticChatApiTests.CreateJWTTokenForAppUser&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c0421edc_002D6a5c_002D4ce5_002Db4c2_002Dff132fb0a489/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CreateJWTTokenForAppUser" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::0167D3A4-D8EE-4B1D-9605-89473BCA122B::net6.0::CrypticChat.Api.Tests.CrypticChatApiTests.CreateJWTTokenForAppUser&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c0421edc_002D6a5c_002D4ce5_002Db4c2_002Dff132fb0a489/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CreateJWTTokenForAppUser" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::0167D3A4-D8EE-4B1D-9605-89473BCA122B::net6.0::CrypticChat.Api.Tests.CrypticChatApiTests.CreateJWTTokenForAppUser&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

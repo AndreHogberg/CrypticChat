@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useState } from "react";
 import agent from "../lib/agent";
+import { UserDetails } from "../lib/models/UserDetails";
 import { useAppDispatch } from "../redux/hooks";
 import { loginUser } from "../redux/slices/userSlice";
 
@@ -14,10 +15,11 @@ const Register = () => {
 
   async function handleButtonClick() {
     let user = { username: username, email: email, password: password };
+    
     if(confirmPassword === password){
+      console.log(user);
       let register = await agent.Account.register(user);
-
-      dispatch(loginUser(register))
+      dispatch(loginUser(register));
     }
 
   }

@@ -7,8 +7,26 @@ import Login from './components/login'
 import Chat from './components/SideBar/Chat'
 import Add from './components/Add'
 import Welcome from './components/Welcome'
+import { useEffect } from 'react'
+import { useAppSelector } from './redux/hooks'
+import { useDispatch } from 'react-redux'
+import agent from './lib/agent'
+import { loginUser, logout } from './redux/slices/userSlice'
 
 function App() {
+  const user = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    if(user.token){
+      agent.Account.current().then((d) => dispatch(loginUser(d)))
+    }
+    else{
+      dispatch(logout())
+    }
+  },[user.token])
+
   return (
     <div className='flex flex-row w-screen h-screen'>
         <Routes>

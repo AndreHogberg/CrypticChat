@@ -1,30 +1,22 @@
 import { createReducer } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 import { getToken } from "../redux/slices/userSlice";
+import { store } from "../redux/store";
 import { UserDetails } from "./models/UserDetails";
 import { UserLogin } from "./models/UserLogin";
 import { UserRegister } from "./models/UserRegister";
 
 
-const sleep = (delay: number) => {
-    return new Promise((resolve) => {
-        setTimeout(resolve,delay);
-    })
-}
-
-
-axios.defaults.baseURL = "http://localhost:5000/api";
-
+axios.defaults.baseURL = "http://localhost:5286/api";
 
 axios.interceptors.request.use(config => {
+    const {user} = store.getState();
+    const {token} = user;
 
-})
-
-
-
-axios.interceptors.response.use(async response => {
-    await sleep(1000);
-    return response;
+    if(token){
+        config.headers!.Authorization = `Bearer ${token}`
+    }
+    return config;
 });
 
 
@@ -36,9 +28,9 @@ const requests = {
 }
 
 const Account = {
-    current:    () => requests.get<UserDetails>('Users/checkuser'),
-    login:      (user: UserLogin) => requests.post<UserDetails>('/Users/login', user),
-    register:   (user: UserRegister) => requests.post<UserDetails>('/Users/register', user)
+    current:    () => requests.get<UserDetails>('/User'),
+    login:      (user: UserLogin) => requests.post<UserDetails>('/User/login', user),
+    register:   (user: UserRegister) => requests.post<UserDetails>('/User/register', user)
 }
 
 const agent = {

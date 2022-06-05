@@ -78,7 +78,7 @@ public class UserController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [Authorize]
-    [HttpGet("/checkuser")]
+    [HttpGet]
     public async Task<ActionResult<UserDto>> CheckUser()
     {
         var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
