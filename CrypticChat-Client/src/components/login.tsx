@@ -33,7 +33,7 @@ const Login = () => {
         <div className="mt-10 flex flex-col">
           <div className="mb-6  pt-3 rounded bg-gray-200">
             <label className="block text-gray-300 text-sm font-bold mb-2 ml-3">
-              Username
+              Email
             </label>
             <input
               className="bg-gray-200 rounded w-full focus:outline-none border-b-4 border-gray-100 focus:border-purple-600 transition duration-500 px-3 pb-3"

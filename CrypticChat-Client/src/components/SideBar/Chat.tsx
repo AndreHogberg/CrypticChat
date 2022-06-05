@@ -42,8 +42,8 @@ export default function Chat() {
         <Outgoing Text="En kort text" Name="André" />
       </div>
       <div className="flex flex-roww-full justify-end items-center">
-        <input className="p-1 border-black w-full"></input>
-        <button className="bg-purple-600 px-2 flex-none py-2 m-2 border-black rounded text-white">
+        <input placeholder="Send Oscar a message" className="p-1 border-black w-full"></input>
+        <button className="bg-purple-600 hover:bg-purple-700 px-2 flex-none py-2 m-2 border-black rounded text-white">
           <BsFillArrowRightCircleFill />
         </button>
       </div>

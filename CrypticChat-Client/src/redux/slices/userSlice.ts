@@ -24,14 +24,15 @@ export const userSlice = createSlice({
     loginUser: (state, action: PayloadAction<UserDetails>) => {
       state.token = action.payload.token;
       state.Authenticated = true;
-      state.userName = action.payload.email;
+      state.userName = action.payload.username;
       window.localStorage.setItem("token", action.payload.token);
     },
     logout: (state) => {
       state.Authenticated = false;
       state.token = null;
+      state.userName = "";
       window.localStorage.removeItem("token");
-      state.userName = ""
+
     },
     update: (state, action: PayloadAction<UserDetails>) => {
 

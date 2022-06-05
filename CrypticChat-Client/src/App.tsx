@@ -33,7 +33,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register/>}/>
           <Route path="/" element={<RequireAuth children={<Layout />}/>}>
-            <Route path="/ASD" element={<Welcome />}/>
+            <Route path="/Welcome" element={<Welcome />}/>
             <Route index element={<Chat />}/> 
             <Route path="add" element={<Add />}/>
           </Route>
