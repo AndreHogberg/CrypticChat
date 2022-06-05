@@ -6,6 +6,7 @@ module.exports = {
       "sidebar-gray": "#333333",
       "main-gray": "#717171",
       white: "#FFFFFF",
+      "gray-90": "#e5e5e5",
       black: "#000000",
       "gray-600": "#050505",
       "gray-300": "#595959",
