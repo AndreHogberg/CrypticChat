@@ -1,5 +1,6 @@
 import Incoming from "../Chat/Incoming";
 import Outgoing from "../Chat/Outgoing";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
 
 export default function Chat() {
   return (
@@ -41,7 +42,7 @@ export default function Chat() {
       <div className="absolute inset-x-128 bottom-0 h-16 bg-main-gray py-2 px-2">
         <input className="border-black"></input>
         <button className="bg-purple-600 px-2 py-2 m-2 border-black rounded text-white">
-          Send
+          <BsFillArrowRightCircleFill />
         </button>
       </div>
     </div>
