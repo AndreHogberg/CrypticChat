@@ -11,7 +11,7 @@ export default function SideBarHeader(){
                 <div>
                     <img
                     className="w-16 bg-white rounded-full" 
-                    src="https://avatars.dicebear.com/api/human/asdasd.svg"/>
+                    src={`https://avatars.dicebear.com/api/croodles/${user.userName}.svg`}/>
                 </div>
                 <div className="text-md ml-1">{user.userName}</div>
             </div>
