@@ -1,9 +1,19 @@
-import axios from "axios";
-import { useState } from "react";
-import { useAppDispatch } from "../redux/hooks";
-import { setToken } from "../redux/slices/userSlice";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import agent from "../lib/agent";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { loginUser } from "../redux/slices/userSlice";
 
 const Register = () => {
+  const user = useAppSelector(state => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(user.Authenticated){
+      navigate("/", {replace: true})
+    }
+  },[user])
+
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,15 +23,13 @@ const Register = () => {
 
   async function handleButtonClick() {
     let user = { username: username, email: email, password: password };
+    
+    if(confirmPassword === password){
+      console.log(user);
+      let register = await agent.Account.register(user);
+      dispatch(loginUser(register));
+    }
 
-    let register = await axios.post<{
-      email: string;
-      username: string;
-      token: string;
-    }>("http://localhost:80/api/User/register", user);
-    console.log(register);
-    window.localStorage.setItem("token", register.data.token);
-    dispatch(setToken(register.data.token));
   }
 
   return (

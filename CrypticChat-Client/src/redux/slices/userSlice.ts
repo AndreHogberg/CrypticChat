@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { UserDetails } from "../../lib/models/UserDetails";
 import type { RootState } from "../store";
 
 // Define a type for the slice state
@@ -20,22 +21,31 @@ export const userSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    setUserName: (state, action: PayloadAction<string>) => {
-      state.userName = action.payload;
+    loginUser: (state, action: PayloadAction<UserDetails>) => {
+      state.token = action.payload.token;
       state.Authenticated = true;
+      state.userName = action.payload.email;
+      window.localStorage.setItem("token", action.payload.token);
     },
-    setToken: (state, action: PayloadAction<string>) => {
-      state.token = action.payload;
+    logout: (state) => {
+      state.Authenticated = false;
+      state.token = null;
+      window.localStorage.removeItem("token");
+      state.userName = ""
     },
+    update: (state, action: PayloadAction<UserDetails>) => {
+
+    }
   },
 });
 
-export const { setUserName, setToken } = userSlice.actions;
+export const { loginUser, logout } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const getUserName = (state: RootState) => state.user.userName;
 
 export const getToken = (state: RootState) => state.user.token;
+
+export const getAuthStatus = (state: RootState) => state.user.token;
 
 export default userSlice.reducer;

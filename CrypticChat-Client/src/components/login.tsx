@@ -1,23 +1,29 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import agent from '../lib/agent'
+import { useAppSelector } from "../redux/hooks";
+import  { loginUser } from "../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
+
 
 const Login = () => {
+  const user = useAppSelector(state => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(user.Authenticated){
+      navigate("/", {replace: true})
+    }
+  },[user])
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
   async function handleButtonClick() {
     let user = { email: username, password: password };
-    console.log(user);
-
-    let result = await fetch("http://localhost:80/api/User/login", {
-      method: "POST",
-      headers: {
-        Accept: "text/plain",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    result = await result.json();
+    let userDetails = await agent.Account.login(user);
+    if(userDetails){
+      dispatch(loginUser(userDetails));
+    }
   }
   return (
     <div className="w-screen h-screen bg-gradient-to-br from-purple-300 to-blue-300 pt-12 md:pt20 pb-6 px-2 md:px-0">
