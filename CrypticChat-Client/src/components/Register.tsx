@@ -1,11 +1,19 @@
-import axios, { AxiosError } from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import agent from "../lib/agent";
-import { UserDetails } from "../lib/models/UserDetails";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { loginUser } from "../redux/slices/userSlice";
 
 const Register = () => {
+  const user = useAppSelector(state => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(user.Authenticated){
+      navigate("/", {replace: true})
+    }
+  },[user])
+
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Friend from "./Friend";
 
 export default function FriendList(){

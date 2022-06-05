@@ -1,14 +1,20 @@
-import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { UserDetails } from "../lib/models/UserDetails";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import agent from '../lib/agent'
 import { useAppSelector } from "../redux/hooks";
-import userSlice, { loginUser } from "../redux/slices/userSlice";
+import  { loginUser } from "../redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 
 
 const Login = () => {
+  const user = useAppSelector(state => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(user.Authenticated){
+      navigate("/", {replace: true})
+    }
+  },[user])
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

@@ -1,6 +1,4 @@
-import { createReducer } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
-import { getToken } from "../redux/slices/userSlice";
 import { store } from "../redux/store";
 import { UserDetails } from "./models/UserDetails";
 import { UserLogin } from "./models/UserLogin";
