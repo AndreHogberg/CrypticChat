@@ -8,12 +8,12 @@ interface Props {
 export default function Incoming({ Text, Name }: Props) {
   return (
     <div className="flex flex-row w-1/2">
-      <div className="bg-purple-300 rounded pt-1 pb-1 pl-1 pr-1">
+      <div className="bg-purple-300 rounded pt-1 pb-1 pl-1 pr-1 grid grid-cols-2">
         <div className="col-1">
-          <p className="text-sm text-bold text-white">{Name}</p>
+          <p className="text-sm text-white font-bold">{Name}</p>
         </div>
-        <div className="col-1 justify end">
-          <p className="text-xs text-white">
+        <div className="col-1">
+          <p className="text-xs text-white flex justify-end">
             <ReactTimeAgo date={new Date()} />
           </p>
         </div>
