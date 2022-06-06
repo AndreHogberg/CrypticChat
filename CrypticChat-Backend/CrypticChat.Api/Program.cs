@@ -1,5 +1,3 @@
-using System.Text;
-using CrypticChat.Api.Hubs;
 using CrypticChat.Api.Services;
 using CrypticChat.Application.Services;
 using CrypticChat.Domain;
@@ -8,9 +6,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.AddControllers();
 var dbString = Environment.GetEnvironmentVariable("CRYPTIC_DB");
@@ -20,9 +18,8 @@ if (dbString is not null)
 }
 else
 {
-    builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;port=5432;Database=postgres"));
+    builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql("User ID=postgres;Password=Admin1337;Host=localhost;port=5432;Database=postgres"));
 }
-
 
 builder.Services.AddCors(opt =>
 {
@@ -31,7 +28,6 @@ builder.Services.AddCors(opt =>
         policy.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
     });
 });
-
 
 builder.Services.AddScoped<IKeyService, KeyService>();
 
@@ -63,7 +59,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetService<DataContext>();
@@ -71,7 +66,6 @@ using (var scope = app.Services.CreateScope())
 }
 
 //app.UseHttpsRedirection();
-
 
 app.UseAuthentication();
 app.UseCors("AllowAll");
