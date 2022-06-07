@@ -33,9 +33,6 @@ export const userSlice = createSlice({
       state.userName = "";
       window.localStorage.removeItem("token");
 
-    },
-    update: (state, action: PayloadAction<UserDetails>) => {
-
     }
   },
 });

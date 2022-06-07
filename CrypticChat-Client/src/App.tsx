@@ -12,6 +12,7 @@ import { useAppSelector } from './redux/hooks'
 import { useDispatch } from 'react-redux'
 import agent from './lib/agent'
 import { loginUser, logout } from './redux/slices/userSlice'
+import {UserDetails} from "./lib/models/UserDetails";
 
 function App() {
   const user = useAppSelector((state) => state.user);
@@ -20,7 +21,7 @@ function App() {
 
   useEffect(() => {
     if(user.token){
-      agent.Account.current().then((d) => dispatch(loginUser(d)))
+      agent.Account.current().then((d: UserDetails) => dispatch(loginUser(d)))
     }
     else{
       dispatch(logout())

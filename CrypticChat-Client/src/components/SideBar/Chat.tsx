@@ -1,49 +1,36 @@
 import Incoming from "../Chat/Incoming";
 import Outgoing from "../Chat/Outgoing";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import chatConnection from "../../lib/signalR";
+import { useAppSelector } from "../../redux/hooks";
+import { UserMessage } from "../../lib/models/Message";
 
 export default function Chat() {
+  const {chatMessage} = useAppSelector(state => state.chat);
+  const [myMessages, setMyMessages] = useState<string[]>([]);
+  const [inputText, setInputText] = useState(""); 
+  const [concatMessages, setConcatMessages] = useState<UserMessage[]>();
+
+  useEffect(() => {
+    
+  },[chatMessage, myMessages])
+  const click = () => {
+    chatConnection.invoke("NewMessage","Oscar", "hej :)")
+    setMyMessages(myMessages.concat(inputText))
+  }
   return (
     <div className="flex flex-col w-full h-full px-2 py-2 bg-gradient-to-b justify-between space-y-5 from-white to-gray-90">
       <div className="flex flex-col w-full h-full overflow-auto">
-        <Incoming
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="Oscar"
-        />
-        <Outgoing
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="André"
-        />
-        <Incoming
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="Oscar"
-        />
-        <Outgoing
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="André"
-        />
-        <Incoming
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="Oscar"
-        />
-        <Outgoing
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="André"
-        />
-        <Incoming
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="Oscar"
-        />
-        <Outgoing
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          Name="André"
-        />
-        <Incoming Text="En kort text" Name="Oscar" />
-        <Outgoing Text="En kort text" Name="André" />
+        {chatMessage && chatMessage.map((cm) => (
+          cm.messages.map((mes) => (
+            <Incoming Text={mes} Name={cm.friend}/>
+          ))
+        ))}
       </div>
       <div className="flex flex-roww-full justify-end items-center">
-        <input placeholder="Send Oscar a message" className="p-1 border-black w-full"></input>
-        <button className="bg-purple-600 hover:bg-purple-700 px-2 flex-none py-2 m-2 border-black rounded text-white">
+        <input placeholder="Send Oscar a message" className="p-1 border-black w-full" onChange={(e) => setInputText(e.target.value)}></input>
+        <button className="bg-purple-600 hover:bg-purple-700 px-2 flex-none py-2 m-2 border-black rounded text-white" onClick={click}>
           <BsFillArrowRightCircleFill />
         </button>
       </div>

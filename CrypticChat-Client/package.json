@@ -9,6 +9,7 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@microsoft/signalr": "^6.0.5",
     "@reduxjs/toolkit": "^1.8.2",
     "@tauri-apps/api": "^1.0.0-rc.5",
     "@types/react-redux": "^7.1.24",

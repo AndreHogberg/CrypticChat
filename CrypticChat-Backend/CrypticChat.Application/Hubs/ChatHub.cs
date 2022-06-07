@@ -9,8 +9,7 @@ public class ChatHub : Hub
         
     }
 
-    public async Task ConnectUsers()
+    public async Task ConnectUsers(string friendChatId)
     {
-        
     }
 }

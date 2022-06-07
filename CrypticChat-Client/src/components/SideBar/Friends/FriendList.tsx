@@ -7,6 +7,7 @@ export default function FriendList(){
             <Friend name="Amanda" friendId="333"/>
             <Friend name="Emanuel" friendId="asddasd"/>
             <Friend name="Loushy" friendId="hdfgsf23"/>
+            <Friend name="Bringarn" friendId="hdfgsf23"/>
         </div>
     )
 }
