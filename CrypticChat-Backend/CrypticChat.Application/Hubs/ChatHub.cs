@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
 
-namespace CrypticChat.Api.Hubs;
-
+namespace CrypticChat.Application.Hubs;
+[Authorize]
 public class ChatHub : Hub
 {
     public ChatHub()
@@ -9,7 +10,8 @@ public class ChatHub : Hub
         
     }
 
-    public async Task ConnectUsers(string friendChatId)
+    public async Task NewMessage(string userName, string message)
     {
+        await Clients.User(Context.UserIdentifier).SendAsync("recieveMessage", userName, message);
     }
 }

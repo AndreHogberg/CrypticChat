@@ -1,5 +1,3 @@
-
-  
 using System.Security.Claims;
 using CrypticChat.Api.Services;
 using CrypticChat.Application.dtos;
@@ -85,7 +83,6 @@ public class UserController : ControllerBase
 
         return Ok(CreateUserObject(user));
     }
-
     private UserDto CreateUserObject(AppUser user)
     {
         return new UserDto
