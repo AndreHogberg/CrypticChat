@@ -1,4 +1,6 @@
-﻿using CrypticChat.Persistance;
+﻿using CrypticChat.Application.dtos;
+using CrypticChat.Domain;
+using CrypticChat.Persistance;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
@@ -17,8 +19,19 @@ public class ChatHub : Hub
     {
         await Groups.AddToGroupAsync(Context.ConnectionId, roomId);
     }
-    public async Task NewMessage(string message, string roomId, string senderUser)
+    public async Task NewMessage(string message, string roomId)
     {
-        await Clients.Group(roomId).SendAsync("recieveMessage", senderUser, message, DateTime.Now);
+        var newMessage = new Message()
+        {
+            ChatRoomId = Guid.Parse(roomId),
+            Id = Guid.NewGuid(),
+            SenderId = Context.UserIdentifier,
+            SentAt = DateTime.Now
+        };
+        var messageSaved = await _dataContext.SaveChangesAsync() > 0;
+        if (messageSaved)
+        {
+            await Clients.Group(roomId).SendAsync("recieveMessage", new MessageDto{Message = newMessage.Text, Date = newMessage.SentAt, Sender = newMessage.Sender.UserName});
+        }
     }
 }
