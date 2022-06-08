@@ -1,5 +1,4 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
-import { addChatMessage } from "../redux/slices/chatSlice";
 import { store } from "../redux/store";
 
 const {user} = store.getState();
@@ -9,9 +8,7 @@ const chatConnection = new HubConnectionBuilder()
     .build();    
 
 chatConnection.on("recieveMessage", (senderUser,message,date) => {
-    console.log("Test");
-    
-    store.dispatch(addChatMessage({userName: senderUser, message, date }))
+
 });
 chatConnection.start()
 export default chatConnection;

@@ -74,11 +74,6 @@ public class UserController : ControllerBase
 
         return BadRequest("There was a problem registering the user");
     }
-
-    public async Task<IActionResult> Test()
-    {
-        await _friendHub.Clients.User("").SendAsync("recieveFriendRequest", new { });
-    }
     /// <summary>
     /// This function will check if user token is authorized, create new token and send back account details. 
     /// </summary>
