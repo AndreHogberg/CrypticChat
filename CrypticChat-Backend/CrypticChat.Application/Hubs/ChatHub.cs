@@ -10,8 +10,8 @@ public class ChatHub : Hub
         
     }
 
-    public async Task NewMessage(string userName, string message)
+    public async Task NewMessage(string message, string id, string senderUser)
     {
-        await Clients.User(Context.UserIdentifier).SendAsync("recieveMessage", userName, message);
+        await Clients.User(Context.UserIdentifier).SendAsync("recieveMessage", senderUser, message, DateTime.Now);
     }
 }

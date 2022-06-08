@@ -19,7 +19,7 @@ export default function SideBarHeader(){
             </div>
             <div className="flex flex-col items-end h-full justify-between w-2/4">
                 <MdLogout size={24} className="text-white hover:text-purple-600 hover:cursor-pointer" onClick={() => dispatch(logout())}/>
-                <MdHome size={24} className="text-white hover:text-purple-600 hover:cursor-pointer" onClick={() => navigate("/Welcome")}/>
+                <MdHome size={24} className="text-white hover:text-purple-600 hover:cursor-pointer" onClick={() => navigate("/")}/>
             </div>
         </div>
         )

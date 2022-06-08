@@ -64,7 +64,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 // If the request is for our hub...
                 var path = context.HttpContext.Request.Path;
                 if (!string.IsNullOrEmpty(accessToken) &&
-                    (path.StartsWithSegments("/hubs/chat")))
+                    (path.StartsWithSegments("/hubs/chat") || path.StartsWithSegments("/hubs/friend")))
                 {
                     // Read the token out of the query string
                     context.Token = accessToken;
@@ -100,5 +100,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHub<ChatHub>("/hubs/chat");
+app.MapHub<FriendHub>("/hubs/friend");
 
 app.Run();

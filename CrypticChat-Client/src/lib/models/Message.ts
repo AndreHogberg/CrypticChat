@@ -7,6 +7,7 @@ export interface ChatMessages {
 
 // Use to send and retrieve messages.
 export interface UserMessage {
-    friend: string
+    userName: string
     message: string
+    date: Date | null
 }
