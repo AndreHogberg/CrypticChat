@@ -8,8 +8,8 @@ public class DataContext : IdentityDbContext<AppUser>
 {
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
-        
     }
 
     public DbSet<PublicKey> Keys { get; set; }
+    public DbSet<Friend> Friends { get; set; }
 }

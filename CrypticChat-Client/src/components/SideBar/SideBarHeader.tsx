@@ -13,7 +13,7 @@ export default function SideBarHeader() {
         <div>
           <img
             className="w-16 bg-white rounded-full border-purple-600 border-2"
-            src={`https://avatars.dicebear.com/api/adventurer-neutral/${user.userName}.svg`}
+            src={`https://avatars.dicebear.com/api/initials/${user.userName}.svg`}
           />
         </div>
         <div className="text-md ml-1">{user.userName}</div>
