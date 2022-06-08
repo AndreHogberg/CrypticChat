@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { store } from "../redux/store";
+import { ChatMessages } from "./models/Message";
 import { UserDetails } from "./models/UserDetails";
 import { UserLogin } from "./models/UserLogin";
 import { UserRegister } from "./models/UserRegister";
@@ -31,8 +32,14 @@ const Account = {
     register:   (user: UserRegister) => requests.post<UserDetails>('/User/register', user)
 }
 
+const Messages = {
+    newChat: (friendId: string) => requests.get<ChatMessages>(`/chat/${friendId}`)
+}
+
+
 const agent = {
-    Account
+    Account,
+    Messages
 }
 
 export default agent;

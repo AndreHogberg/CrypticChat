@@ -19,7 +19,7 @@ public class ChatController : ControllerBase
     {
         _context = context;
     }
-
+    [HttpGet("{friendId}")]
     public async Task<IActionResult> ChatMessagesAndInfo(string friendId)
     {
         var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
@@ -35,7 +35,7 @@ public class ChatController : ControllerBase
             return BadRequest();
         }
         
-        var messages = await _context.Messages.Where(x => x.ChatRoomId == chatRoom.Id).Include(x => x.Sender).ToListAsync();
+        var messages = await _context.Messages.Where(x => x.ChatRoomId == chatRoom.Id).Include(x => x.Sender).OrderBy(x => x.SentAt).ToListAsync();
         var messageDtos = MapToMessageDtoList(messages);
         return Ok(new { Messages = messageDtos, ChatRoomId = chatRoom.Id });
     }

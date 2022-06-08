@@ -10,9 +10,6 @@ import ChatBox from "../Chat/ChatBox";
 
 export default function Chat() {
   const param = useParams<{id: string}>();
-  useEffect(() => {
-    
-  },[param])
   return (
     <ChatBox friendId={param.id!}/>
   );
