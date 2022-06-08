@@ -29,9 +29,8 @@ if (dbString is not null)
 }
 else
 {
-    builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;port=5432;Database=postgres"));
+    builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql("User ID=postgres;Password=Admin1337;Host=localhost;port=5432;Database=postgres"));
 }
-
 
 
 builder.Services.AddScoped<IKeyService, KeyService>();
@@ -82,7 +81,6 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
 
 using (var scope = app.Services.CreateScope())
 {

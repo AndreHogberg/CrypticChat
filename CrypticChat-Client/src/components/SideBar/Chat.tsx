@@ -9,8 +9,6 @@ import { useParams } from "react-router-dom";
 import ChatBox from "../Chat/ChatBox";
 
 export default function Chat() {
-  const param = useParams<{id: string}>();
-  return (
-    <ChatBox friendId={param.id!}/>
-  );
+  const param = useParams<{ id: string }>();
+  return <ChatBox friendId={param.id!} />;
 }
