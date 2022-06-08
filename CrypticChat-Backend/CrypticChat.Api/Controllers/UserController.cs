@@ -1,12 +1,12 @@
-
-  
 using System.Security.Claims;
 using CrypticChat.Api.Services;
 using CrypticChat.Application.dtos;
+using CrypticChat.Application.Hubs;
 using CrypticChat.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace CrypticChat.Api.Controllers;
@@ -18,13 +18,15 @@ public class UserController : ControllerBase
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly TokenService _tokenService;
+    private readonly IHubContext<FriendHub> _friendHub;
 
     public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        TokenService tokenService)
+        TokenService tokenService, IHubContext<FriendHub> friendHub)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _tokenService = tokenService;
+        _friendHub = friendHub;
     }
 
     [HttpPost("login")]
@@ -72,7 +74,6 @@ public class UserController : ControllerBase
 
         return BadRequest("There was a problem registering the user");
     }
-
     /// <summary>
     /// This function will check if user token is authorized, create new token and send back account details. 
     /// </summary>
@@ -85,7 +86,6 @@ public class UserController : ControllerBase
 
         return Ok(CreateUserObject(user));
     }
-
     private UserDto CreateUserObject(AppUser user)
     {
         return new UserDto

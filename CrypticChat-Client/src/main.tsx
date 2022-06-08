@@ -15,11 +15,12 @@ TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
+
+
 );

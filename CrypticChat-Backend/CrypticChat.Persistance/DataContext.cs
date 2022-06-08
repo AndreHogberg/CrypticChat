@@ -12,4 +12,7 @@ public class DataContext : IdentityDbContext<AppUser>
 
     public DbSet<PublicKey> Keys { get; set; }
     public DbSet<Friend> Friends { get; set; }
+    public DbSet<FriendRequests> FriendRequests { get; set; }
+    public DbSet<ChatRoom> ChatRooms { get; set; }
+    public DbSet<Message> Messages { get; set; }
 }
