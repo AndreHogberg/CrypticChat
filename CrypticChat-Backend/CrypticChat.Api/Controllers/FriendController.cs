@@ -1,6 +1,7 @@
 ﻿using CrypticChat.Application.dtos;
 using CrypticChat.Domain;
 using CrypticChat.Persistance;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrypticChat.Api.Controllers
@@ -10,14 +11,16 @@ namespace CrypticChat.Api.Controllers
     public class FriendController : Controller
     {
         private readonly DataContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public FriendController(DataContext context)
+        public FriendController(DataContext context, SignInManager<AppUser> signInManager)
         {
-            context = _context;
+            _context = context;
+            _signInManager = signInManager;
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddFriend(AddFriendDto addFriendDto)
+        public async Task<IActionResult> AddFriend(string email)
         {
             var friendrequest = _context.Friends.Where(x => x.UserOneId == addFriendDto.UserOneId).ToList();
             if (friendrequest != null)
@@ -71,6 +74,24 @@ namespace CrypticChat.Api.Controllers
             var friendsList = _context.Friends.Where(x => x.UserOneId == userId && x.IsConfirmed == true).ToList();
 
             return Ok(friendsList);
+        }
+
+        public async Task<IActionResult> SearchFriends(string name)
+        {
+            var searchEmail = _signInManager.UserManager.Users.Where(x => x.Email.Contains(name)).ToList();
+
+            if (searchEmail != null) return BadRequest("Could not find anyone with that email!");
+
+            return Ok(searchEmail);
+        }
+
+        internal string FindUser(string email)
+        {
+            var user = _signInManager.UserManager.Users.Where(_x => _x.Email.Contains(email)).FirstOrDefault();
+
+            if (user != null) return user.Id;
+
+            return null;
         }
     }
 }
