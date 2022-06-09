@@ -1,11 +1,14 @@
 ﻿using CrypticChat.Application.dtos;
 using CrypticChat.Domain;
 using CrypticChat.Persistance;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CrypticChat.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("/api/user/")]
     public class FriendController : Controller
@@ -22,26 +25,29 @@ namespace CrypticChat.Api.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> AddFriend(string email)
         {
-            var friendrequest = _context.Friends.Where(x => x.UserOneId == addFriendDto.UserOneId).ToList();
-            if (friendrequest != null)
+            var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userClaim is null)
             {
-                foreach (var friend in friendrequest)
-                {
-                    if (friend.UserTwoId == addFriendDto?.UserTwoId && friend.IsConfirmed == false)
-                    {
-                        return BadRequest("You have already sent an friend request to this user");
-                    }
-                    if (friend.UserTwoId == addFriendDto?.UserTwoId)
-                    {
-                        return BadRequest("You are already friends with this user");
-                    }
-                }
+                return Unauthorized();
             }
+            var userId = userClaim.Value;
+            var friendrequest = FindUser(email);
+            //if (friendrequest != null)
+            //{
+            //    if ()
+            //    {
+            //        return BadRequest("You have already sent an friend request to this user");
+            //    }
+            //    if (friend.UserTwoId == addFriendDto?.UserTwoId)
+            //    {
+            //        return BadRequest("You are already friends with this user");
+            //    }
+            //}
 
             _context.Friends.Add(new Friend
             {
-                UserOneId = addFriendDto.UserOneId,
-                UserTwoId = addFriendDto.UserTwoId,
+                UserOneId = userId,
+                UserTwoId = friendrequest.Id,
                 ChatRoomId = new Guid().ToString(),
                 IsConfirmed = false
             });
@@ -85,11 +91,11 @@ namespace CrypticChat.Api.Controllers
             return Ok(searchEmail);
         }
 
-        internal string FindUser(string email)
+        internal AppUser FindUser(string email)
         {
             var user = _signInManager.UserManager.Users.Where(_x => _x.Email.Contains(email)).FirstOrDefault();
 
-            if (user != null) return user.Id;
+            if (user != null) return user;
 
             return null;
         }
