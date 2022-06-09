@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { store } from "../redux/store";
+import { friendList } from "./models/friends";
 import { ChatMessages } from "./models/Message";
 import { UserDetails } from "./models/UserDetails";
 import { UserLogin } from "./models/UserLogin";
@@ -33,13 +34,19 @@ const Account = {
 };
 
 const Messages = {
-    newChat: (friendId: string) => requests.get<ChatMessages>(`/chat/${friendId}`)
-}
+  newChat: (friendId: string) =>
+    requests.get<ChatMessages>(`/chat/${friendId}`),
+};
 
+const Search = {
+  newSearch: (email: string) =>
+    requests.get<friendList>(`/friend/search/${email}`),
+};
 
 const agent = {
-    Account,
-    Messages
-}
+  Account,
+  Messages,
+  Search,
+};
 
 export default agent;

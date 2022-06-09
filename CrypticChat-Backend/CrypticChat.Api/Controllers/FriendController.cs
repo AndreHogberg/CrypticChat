@@ -4,8 +4,8 @@ using CrypticChat.Persistance;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CrypticChat.Api.Controllers
 {
@@ -48,18 +48,19 @@ namespace CrypticChat.Api.Controllers
             await _context.SaveChangesAsync();
             return Ok(friendrequest);
         }
+
         [HttpPost("request")]
         public async Task<IActionResult> AnswerRequest(RequestAnswer answer)
         {
             if (answer.Answer == false)
             {
-               var friendRequest =  _context.Friends.FirstOrDefault(x => x.UserOneId == answer.UserOneId &&
+                var friendRequest = _context.Friends.FirstOrDefault(x => x.UserOneId == answer.UserOneId &&
                                                      x.UserTwoId == answer.UserTwoId);
-               if (friendRequest is null)
-               {
-                   return BadRequest("No pending friend request");
-               }
-               _context.Friends.Remove(friendRequest);
+                if (friendRequest is null)
+                {
+                    return BadRequest("No pending friend request");
+                }
+                _context.Friends.Remove(friendRequest);
             }
             else
             {
@@ -75,6 +76,7 @@ namespace CrypticChat.Api.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+
         [HttpGet("friends")]
         public async Task<IActionResult> GetFriends(string userId)
         {
@@ -82,14 +84,26 @@ namespace CrypticChat.Api.Controllers
 
             return Ok(friendsList);
         }
-        [HttpGet("search")]
-        public async Task<IActionResult> SearchFriends(string name)
+
+        [HttpGet("search/{email}")]
+        public async Task<IActionResult> SearchFriends([FromRoute] string email)
         {
-            var searchEmail = await _signInManager.UserManager.Users.Where(x => x.Email.Contains(name)).ToListAsync();
+            var searchEmail = await _signInManager.UserManager.Users.Where(x => x.Email.Contains(email)).ToListAsync();
 
             if (searchEmail.Count == 0) return BadRequest("Could not find anyone with that email!");
 
-            return Ok(searchEmail);
+            List<FriendDto> friends = new List<FriendDto>();
+
+            foreach (var friend in searchEmail)
+            {
+                friends.Add(new FriendDto
+                {
+                    Email = friend.Email,
+                    Username = friend.UserName
+                });
+            }
+
+            return Ok(friends);
         }
 
         private async Task<AppUser> FindUserAsync(string email)

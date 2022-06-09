@@ -1,4 +1,5 @@
 import { MdHome, MdLogout } from "react-icons/md";
+import { FaUserFriends } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
@@ -23,6 +24,11 @@ export default function SideBarHeader() {
           size={24}
           className="text-white hover:text-purple-300 hover:cursor-pointer"
           onClick={() => dispatch(logout())}
+        />
+        <FaUserFriends
+          size={24}
+          className="text-white hover:text-purple-300 hover:cursor-pointer"
+          onClick={() => navigate("/friends")}
         />
         <MdHome
           size={24}
