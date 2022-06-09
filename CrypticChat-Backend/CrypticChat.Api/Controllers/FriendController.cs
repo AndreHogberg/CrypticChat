@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrypticChat.Api.Controllers
 {
@@ -31,19 +32,11 @@ namespace CrypticChat.Api.Controllers
                 return Unauthorized();
             }
             var userId = userClaim.Value;
-            var friendrequest = FindUser(email);
-            //if (friendrequest != null)
-            //{
-            //    if ()
-            //    {
-            //        return BadRequest("You have already sent an friend request to this user");
-            //    }
-            //    if (friend.UserTwoId == addFriendDto?.UserTwoId)
-            //    {
-            //        return BadRequest("You are already friends with this user");
-            //    }
-            //}
-
+            var friendrequest = await FindUserAsync(email);
+            if (friendrequest is null)
+            {
+                return BadRequest("Found no user with that specific email");
+            }
             _context.Friends.Add(new Friend
             {
                 UserOneId = userId,
@@ -60,14 +53,22 @@ namespace CrypticChat.Api.Controllers
         {
             if (answer.Answer == false)
             {
-                _context.Friends.Remove(_context.Friends.Where(x => x.UserOneId == answer.UserOneId &&
-                  x.UserTwoId == answer.UserTwoId).FirstOrDefault());
+               var friendRequest =  _context.Friends.FirstOrDefault(x => x.UserOneId == answer.UserOneId &&
+                                                     x.UserTwoId == answer.UserTwoId);
+               if (friendRequest is null)
+               {
+                   return BadRequest("No pending friend request");
+               }
+               _context.Friends.Remove(friendRequest);
             }
             else
             {
-                var friendRequest = _context.Friends.Where(x => x.UserOneId == answer.UserOneId &&
-                x.UserTwoId == answer.UserTwoId).FirstOrDefault();
-
+                var friendRequest = _context.Friends.FirstOrDefault(x => x.UserOneId == answer.UserOneId &&
+                                                                         x.UserTwoId == answer.UserTwoId);
+                if (friendRequest is null)
+                {
+                    return BadRequest("No pending friend request");
+                }
                 friendRequest.IsConfirmed = true;
             }
 
@@ -77,27 +78,23 @@ namespace CrypticChat.Api.Controllers
 
         public async Task<IActionResult> GetFriends(string userId)
         {
-            var friendsList = _context.Friends.Where(x => x.UserOneId == userId && x.IsConfirmed == true).ToList();
+            var friendsList = await _context.Friends.Where(x => x.UserOneId == userId && x.IsConfirmed == true).ToListAsync();
 
             return Ok(friendsList);
         }
 
         public async Task<IActionResult> SearchFriends(string name)
         {
-            var searchEmail = _signInManager.UserManager.Users.Where(x => x.Email.Contains(name)).ToList();
+            var searchEmail = await _signInManager.UserManager.Users.Where(x => x.Email.Contains(name)).ToListAsync();
 
-            if (searchEmail != null) return BadRequest("Could not find anyone with that email!");
+            if (searchEmail.Count == 0) return BadRequest("Could not find anyone with that email!");
 
             return Ok(searchEmail);
         }
 
-        internal AppUser FindUser(string email)
+        private async Task<AppUser> FindUserAsync(string email)
         {
-            var user = _signInManager.UserManager.Users.Where(_x => _x.Email.Contains(email)).FirstOrDefault();
-
-            if (user != null) return user;
-
-            return null;
+            return await _signInManager.UserManager.Users.FirstOrDefaultAsync(x => x.Email.Contains(email));
         }
     }
 }
