@@ -331,9 +331,9 @@
   dependencies:
     "type-fest" "2.12.2"
 
-"@tauri-apps/cli-darwin-arm64@1.0.0-rc.13":
-  "integrity" "sha512-/EqOz7ASHOU98H58Ibbkg12pLG/P5oyQz8OlueaMYryajkJdmi+bHTkJ05DfbS0owAaHkRJ6f+NmoW/AnyqUbg=="
-  "resolved" "https://registry.npmjs.org/@tauri-apps/cli-darwin-arm64/-/cli-darwin-arm64-1.0.0-rc.13.tgz"
+"@tauri-apps/cli-win32-x64-msvc@1.0.0-rc.13":
+  "integrity" "sha512-ifOTrJVQoBAQUYX+EVnE4XJ/FCMHs4FQ8qxGNszqkSxrU24mmT7La6tzj77352q80KnxRa05xjjLL6GGhmzXRg=="
+  "resolved" "https://registry.npmjs.org/@tauri-apps/cli-win32-x64-msvc/-/cli-win32-x64-msvc-1.0.0-rc.13.tgz"
   "version" "1.0.0-rc.13"
 
 "@tauri-apps/cli@^1.0.0-rc.10":

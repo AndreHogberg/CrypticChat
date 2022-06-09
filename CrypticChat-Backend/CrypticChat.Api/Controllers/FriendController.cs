@@ -48,7 +48,7 @@ namespace CrypticChat.Api.Controllers
             await _context.SaveChangesAsync();
             return Ok(friendrequest);
         }
-
+        [HttpPost("request")]
         public async Task<IActionResult> AnswerRequest(RequestAnswer answer)
         {
             if (answer.Answer == false)
@@ -75,14 +75,14 @@ namespace CrypticChat.Api.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
-
+        [HttpGet("friends")]
         public async Task<IActionResult> GetFriends(string userId)
         {
             var friendsList = await _context.Friends.Where(x => x.UserOneId == userId && x.IsConfirmed == true).ToListAsync();
 
             return Ok(friendsList);
         }
-
+        [HttpGet("search")]
         public async Task<IActionResult> SearchFriends(string name)
         {
             var searchEmail = await _signInManager.UserManager.Users.Where(x => x.Email.Contains(name)).ToListAsync();
