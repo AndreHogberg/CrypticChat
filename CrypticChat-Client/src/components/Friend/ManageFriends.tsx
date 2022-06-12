@@ -39,15 +39,7 @@ const ManageFriends = () => {
             <AiOutlineSearch size={32} className="pt-2" />
           </button>
         </div>
-        <div>
-          {Object.keys(Friend).map((name, key) => {
-            return (
-              <li key={key}>
-                <p>{name}</p>
-              </li>
-            );
-          })}
-        </div>
+        <div></div>
       </div>
     </div>
   );
