@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import agent from "../../lib/agent";
 import { friend, friendList } from "../../lib/models/friends";
+import FriendList from "../SideBar/Friends/FriendList";
+import Friend from "../SideBar/Friends/Friend";
 
 const ManageFriends = () => {
   const [email, setEmail] = useState("");
+  const [userlist, setUserlist] = useState<friendList>();
 
   async function buttonClick() {
-    console.log(email);
-    let userList = await agent.Search.newSearch(email);
-    console.log(userList);
-    console.log("hej");
+    await agent.Search.newSearch(email).then((data) => setUserlist(data));
   }
 
   return (
@@ -39,7 +39,15 @@ const ManageFriends = () => {
             <AiOutlineSearch size={32} className="pt-2" />
           </button>
         </div>
-        <div></div>
+        <div>
+          {Object.keys(Friend).map((name, key) => {
+            return (
+              <li key={key}>
+                <p>{name}</p>
+              </li>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

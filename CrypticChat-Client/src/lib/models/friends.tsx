@@ -1,4 +1,4 @@
-export interface friendList {
+export type friendList {
   friends: friend[];
 }
 
