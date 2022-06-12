@@ -6,10 +6,12 @@ import { friend, friendList } from "../../lib/models/friends";
 
 const ManageFriends = () => {
   const [email, setEmail] = useState("");
-  let userList;
+
   async function buttonClick() {
-    userList = await agent.Search.newSearch(email);
+    console.log(email);
+    let userList = await agent.Search.newSearch(email);
     console.log(userList);
+    console.log("hej");
   }
 
   return (
