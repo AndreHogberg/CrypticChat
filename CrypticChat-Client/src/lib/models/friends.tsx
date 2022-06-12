@@ -1,8 +1,8 @@
-export type friendList {
+export type friendList = {
   friends: friend[];
 }
 
 export interface friend {
-  Email: string;
-  Username: string;
+  email: string;
+  username: string;
 }

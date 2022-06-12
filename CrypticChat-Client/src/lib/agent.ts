@@ -40,7 +40,7 @@ const Messages = {
 
 const Search = {
   newSearch: (email: string) =>
-    requests.get<friendList>(`/user/search/${email}`),
+    requests.get<friend[]>(`/user/search/${email}`),
 };
 
 const agent = {

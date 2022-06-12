@@ -1,17 +1,21 @@
 import { AiOutlineSearch } from "react-icons/ai";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
 import agent from "../../lib/agent";
 import { friend, friendList } from "../../lib/models/friends";
 import FriendList from "../SideBar/Friends/FriendList";
 import Friend from "../SideBar/Friends/Friend";
-
 const ManageFriends = () => {
   const [email, setEmail] = useState("");
-  const [userlist, setUserlist] = useState<friendList>();
+  const [userlist, setUserlist] = useState<friend[]>([]);
+
+  useMemo(() => {
+    console.log(userlist);
+  }, [userlist]);
 
   async function buttonClick() {
-    await agent.Search.newSearch(email).then((data) => setUserlist(data));
+    const friends = await agent.Search.newSearch(email);
+    console.log(friends);
+    setUserlist(friends);
   }
 
   return (
@@ -39,7 +43,11 @@ const ManageFriends = () => {
             <AiOutlineSearch size={32} className="pt-2" />
           </button>
         </div>
-        <div></div>
+        <div>
+          {userlist.map((data) => (
+            <li>{data.username}</li>
+          ))}
+        </div>
       </div>
     </div>
   );

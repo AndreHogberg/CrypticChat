@@ -88,7 +88,7 @@ namespace CrypticChat.Api.Controllers
         [HttpGet("search/{email}")]
         public async Task<IActionResult> SearchFriends([FromRoute] string email)
         {
-            var searchEmail = await _signInManager.UserManager.Users.Where(x => x.Email.Contains(email)).ToListAsync();
+            var searchEmail = await _signInManager.UserManager.Users.Where(x => x.NormalizedEmail.Contains(email.ToUpper())).ToListAsync();
 
             if (searchEmail.Count == 0) return BadRequest("Could not find anyone with that email!");
 
