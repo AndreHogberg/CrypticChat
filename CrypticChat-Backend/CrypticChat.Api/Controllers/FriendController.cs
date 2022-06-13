@@ -123,7 +123,7 @@ namespace CrypticChat.Api.Controllers
             return Ok(friends);
         }
 
-        public async Task<List<FriendRequestDto>> MapFriendListToDto(List<Friend> friends, string userid)
+        private async Task<List<FriendRequestDto>> MapFriendListToDto(List<Friend> friends, string userid)
         {
             var friendRequestDtos = new List<FriendRequestDto>();
             foreach (var friend in friends)
