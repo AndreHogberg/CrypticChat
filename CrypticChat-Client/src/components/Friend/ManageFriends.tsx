@@ -52,8 +52,8 @@ const ManageFriends = () => {
             <AiOutlineSearch size={32} className="pt-2" />
           </button>
         </div>
-        <div className="">
-          <ul className="">
+        <div className="justify-center">
+          <ul className="w-1/3">
             {userlist.map((data) => (
               <li className="flex items-center justify-between p-3 hover:text-purple-600">
                 <div>

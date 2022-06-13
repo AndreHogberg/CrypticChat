@@ -1,4 +1,3 @@
-using System.Text;
 using CrypticChat.Api.Services;
 using CrypticChat.Application.Hubs;
 using CrypticChat.Application.Services;
@@ -8,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,9 +29,8 @@ if (dbString is not null)
 }
 else
 {
-    builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;port=5433;Database=postgres"));
+    builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql("User ID=postgres;Password=Admin1337;Host=localhost;port=5432;Database=postgres"));
 }
-
 
 builder.Services.AddScoped<IKeyService, KeyService>();
 
