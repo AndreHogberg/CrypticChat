@@ -48,7 +48,24 @@ namespace CrypticChat.Api.Controllers
             await _context.SaveChangesAsync();
             return Ok(friendrequest);
         }
+        [HttpGet("request")]
+        public async Task<IActionResult> GetPendingRequests()
+        {
+            var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userClaim is null)
+            {
+                return Unauthorized();
+            }
+            var userId = userClaim.Value;
 
+            var pendingList = await _context.Friends
+                .Where(user => (user.UserOne.Id == userId || user.UserTwo.Id == userId) && !user.IsConfirmed)
+                .Include(x => x.UserOne)
+                .Include(x => x.UserTwo)
+                .ToListAsync();
+            
+            return Ok(await MapFriendListToDto(pendingList, userId));
+        }
         [HttpPost("request")]
         public async Task<IActionResult> AnswerRequest(RequestAnswer answer)
         {
@@ -106,6 +123,33 @@ namespace CrypticChat.Api.Controllers
             return Ok(friends);
         }
 
+        public async Task<List<FriendRequestDto>> MapFriendListToDto(List<Friend> friends, string userid)
+        {
+            var friendRequestDtos = new List<FriendRequestDto>();
+            foreach (var friend in friends)
+            {
+                if (friend.UserOneId == userid)
+                {
+                    friendRequestDtos.Add(new FriendRequestDto()
+                    {
+                        FriendId = friend.Id,
+                        Email = friend.UserTwo.Email,
+                        Username = friend.UserTwo.UserName
+                    });
+                }
+                else
+                {
+                    friendRequestDtos.Add(new FriendRequestDto()
+                    {
+                        FriendId = friend.Id,
+                        Email = friend.UserOne.Email,
+                        Username = friend.UserOne.UserName
+                    });
+                }
+            }
+
+            return friendRequestDtos;
+        }
         private async Task<AppUser> FindUserAsync(string email)
         {
             return await _signInManager.UserManager.Users.FirstOrDefaultAsync(x => x.Email.Contains(email));
