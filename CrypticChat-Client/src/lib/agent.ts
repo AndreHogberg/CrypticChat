@@ -44,8 +44,7 @@ const Search = {
 };
 
 const AddFriend = {
-  add: (email: string) =>
-    requests.post<string>("/friend/add/", { email: email }),
+  add: (email: string) => requests.post<string>(`/friend/add/${email}`, {}),
 };
 
 const agent = {

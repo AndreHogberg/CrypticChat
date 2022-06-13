@@ -23,8 +23,8 @@ namespace CrypticChat.Api.Controllers
             _signInManager = signInManager;
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> AddFriend([FromBody]string email)
+        [HttpPost("add/{email}")]
+        public async Task<IActionResult> AddFriend(string email)
         {
             var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userClaim is null)
@@ -39,9 +39,9 @@ namespace CrypticChat.Api.Controllers
             }
             _context.Friends.Add(new Friend
             {
+                Id = Guid.NewGuid(),
                 UserOneId = userId,
                 UserTwoId = friendrequest.Id,
-                ChatRoomId = new Guid().ToString(),
                 IsConfirmed = false
             });
 

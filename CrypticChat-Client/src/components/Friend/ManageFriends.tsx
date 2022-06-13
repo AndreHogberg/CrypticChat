@@ -22,7 +22,9 @@ const ManageFriends = () => {
 
   async function buttonClickAdd(email: string) {
     console.log(email);
-    const response = await agent.AddFriend.add(email);
+    const response = await agent.AddFriend.add(email).catch((err) =>
+      console.log(err)
+    );
   }
 
   return (

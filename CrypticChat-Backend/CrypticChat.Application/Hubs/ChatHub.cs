@@ -26,7 +26,7 @@ public class ChatHub : Hub
     {
         var newMessage = new Message()
         {
-            ChatRoomId = Guid.Parse(roomId),
+            FriendId = Guid.Parse(roomId),
             Id = Guid.NewGuid(),
             SenderId = Context.UserIdentifier,
             SentAt = DateTime.Now,
