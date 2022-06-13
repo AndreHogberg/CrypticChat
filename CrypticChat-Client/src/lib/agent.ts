@@ -40,13 +40,19 @@ const Messages = {
 
 const Search = {
   newSearch: (email: string) =>
-    requests.get<friend[]>(`/user/search/${email}`),
+    requests.get<friend[]>(`/friend/search/${email}`),
+};
+
+const AddFriend = {
+  add: (email: string) =>
+    requests.post<string>("/friend/add/", { email: email }),
 };
 
 const agent = {
   Account,
   Messages,
   Search,
+  AddFriend,
 };
 
 export default agent;

@@ -11,7 +11,7 @@ namespace CrypticChat.Api.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("/api/user/")]
+    [Route("/api/friend/")]
     public class FriendController : Controller
     {
         private readonly DataContext _context;
@@ -24,7 +24,7 @@ namespace CrypticChat.Api.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddFriend(string email)
+        public async Task<IActionResult> AddFriend([FromBody]string email)
         {
             var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             if (userClaim is null)
