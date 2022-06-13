@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { store } from "../redux/store";
-import { friend, friendList } from "./models/friends";
+import { friend } from "./models/friends";
 import { ChatMessages } from "./models/Message";
 import { UserDetails } from "./models/UserDetails";
 import { UserLogin } from "./models/UserLogin";

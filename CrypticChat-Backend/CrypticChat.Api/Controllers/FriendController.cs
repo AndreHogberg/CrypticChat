@@ -80,7 +80,7 @@ namespace CrypticChat.Api.Controllers
         [HttpGet("friends")]
         public async Task<IActionResult> GetFriends(string userId)
         {
-            var friendsList = await _context.Friends.Where(x => x.UserOneId == userId && x.IsConfirmed == true).ToListAsync();
+            var friendsList = await _context.Friends.Where(x => (x.UserOneId == userId || x.UserTwoId == userId) && x.IsConfirmed == true).ToListAsync();
 
             return Ok(friendsList);
         }
