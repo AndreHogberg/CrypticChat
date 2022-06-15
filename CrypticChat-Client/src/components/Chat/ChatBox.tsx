@@ -1,8 +1,6 @@
-import { HubConnectionBuilder } from "@microsoft/signalr";
 import { useState, useEffect, useMemo, KeyboardEvent } from "react";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import agent from "../../lib/agent";
-import { ChatMessages, UserMessage } from "../../lib/models/Message";
+import {UserMessage } from "../../lib/models/Message";
 import chatConnection from "../../lib/signalR";
 import { useAppSelector } from "../../redux/hooks";
 import Incoming from "./Incoming";

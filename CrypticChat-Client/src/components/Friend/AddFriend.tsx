@@ -21,7 +21,7 @@ const AddFriend = () => {
 
   async function buttonClickAdd(email: string) {
     console.log(email);
-    const response = await agent.AddFriend.add(email).catch((err) =>
+    const response = await agent.Friend.add(email).catch((err) =>
       console.log(err)
     );
     toast.success(`Sent a request to ${email}`);
@@ -64,7 +64,6 @@ const AddFriend = () => {
           ))}
         </ul>
       </div>
-      
     </div>
   );
 };
