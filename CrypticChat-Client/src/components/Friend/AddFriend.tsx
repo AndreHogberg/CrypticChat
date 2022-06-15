@@ -2,7 +2,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useEffect, useState } from "react";
 import agent from "../../lib/agent";
-import { friend } from "../../lib/models/friends";
+import { friend } from "../../lib/models/Friend";
 import FriendList from "../SideBar/Friends/FriendList";
 import Friend from "../SideBar/Friends/Friend";
 import { ToastContainer, toast } from "react-toastify";

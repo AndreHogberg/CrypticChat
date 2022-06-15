@@ -37,6 +37,7 @@ namespace CrypticChat.Api.Controllers
             {
                 return BadRequest("Found no user with that specific email");
             }
+            
             _context.Friends.Add(new Friend
             {
                 Id = Guid.NewGuid(),
@@ -67,26 +68,20 @@ namespace CrypticChat.Api.Controllers
             return Ok(await MapFriendListToDto(pendingList, userId));
         }
         [HttpPost("request")]
-        public async Task<IActionResult> AnswerRequest(RequestAnswer answer)
+        public async Task<IActionResult> AnswerRequest([FromBody]RequestAnswer answer)
         {
+            if (answer.FriendId is null) return BadRequest("");
+            var friendRequest = await _context.Friends.SingleOrDefaultAsync(fq => fq.Id == Guid.Parse(answer.FriendId));
+            if (friendRequest is null)
+            {
+                return BadRequest("No pending friend request");
+            }
             if (answer.Answer == false)
             {
-                var friendRequest = _context.Friends.FirstOrDefault(x => x.UserOneId == answer.UserOneId &&
-                                                     x.UserTwoId == answer.UserTwoId);
-                if (friendRequest is null)
-                {
-                    return BadRequest("No pending friend request");
-                }
                 _context.Friends.Remove(friendRequest);
             }
             else
             {
-                var friendRequest = _context.Friends.FirstOrDefault(x => x.UserOneId == answer.UserOneId &&
-                                                                         x.UserTwoId == answer.UserTwoId);
-                if (friendRequest is null)
-                {
-                    return BadRequest("No pending friend request");
-                }
                 friendRequest.IsConfirmed = true;
             }
 
@@ -94,25 +89,42 @@ namespace CrypticChat.Api.Controllers
             return Ok();
         }
 
-        [HttpGet("friends")]
-        public async Task<IActionResult> GetFriends(string userId)
+        [HttpGet]
+        public async Task<IActionResult> GetFriends()
         {
-            var friendsList = await _context.Friends.Where(x => (x.UserOneId == userId || x.UserTwoId == userId) && x.IsConfirmed == true).ToListAsync();
-
-            return Ok(friendsList);
+            var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userClaim is null)
+            {
+                return Unauthorized();
+            }
+            var userId = userClaim.Value;
+            var friendsList = await _context.Friends.Where(x => (x.UserOneId == userId || x.UserTwoId == userId) && x.IsConfirmed == true).Include(x => x.UserOne).Include(x => x.UserTwo).ToListAsync();
+        
+            return Ok(await MaptoFriendDto(friendsList, userId));
         }
 
         [HttpGet("search/{email}")]
         public async Task<IActionResult> SearchFriends([FromRoute] string email)
         {
+            var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userClaim is null)
+            {
+                return Unauthorized();
+            }
+            var userId = userClaim.Value;
             var searchEmail = await _signInManager.UserManager.Users.Where(x => x.NormalizedEmail.Contains(email.ToUpper())).ToListAsync();
-
+            
             if (searchEmail.Count == 0) return BadRequest("Could not find anyone with that email!");
 
             List<FriendDto> friends = new List<FriendDto>();
-
+            var pendingRequests = await _context.Friends.Where(x => (x.UserOneId == userId || x.UserTwoId == userId) && x.IsConfirmed == false).ToListAsync();
+            
             foreach (var friend in searchEmail)
             {
+                if (pendingRequests.Any(pending => pending.UserOneId == friend.Id || pending.UserTwoId == friend.Id))
+                {
+                    continue;
+                }
                 friends.Add(new FriendDto
                 {
                     Email = friend.Email,
@@ -123,6 +135,31 @@ namespace CrypticChat.Api.Controllers
             return Ok(friends);
         }
 
+        private async Task<List<FriendDto>> MaptoFriendDto(List<Friend> friends, string userId)
+        {
+            var friendDtos = new List<FriendDto>();
+            foreach (var friend in friends)
+            {
+                if (friend.UserOneId == userId)
+                {
+                    friendDtos.Add(new ()
+                    {
+                        FriendId = friend.Id.ToString(),
+                        Username = friend.UserTwo.UserName
+                    });
+                }
+                else
+                {
+                    friendDtos.Add(new ()
+                    {
+                        FriendId = friend.Id.ToString(),
+                        Username = friend.UserOne.UserName
+                    });
+                }
+            }
+
+            return friendDtos;
+        }
         private async Task<List<FriendRequestDto>> MapFriendListToDto(List<Friend> friends, string userid)
         {
             var friendRequestDtos = new List<FriendRequestDto>();

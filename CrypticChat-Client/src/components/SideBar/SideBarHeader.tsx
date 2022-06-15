@@ -33,7 +33,7 @@ export default function SideBarHeader() {
         <MdHome
           size={24}
           className="text-white hover:text-purple-300 hover:cursor-pointer"
-          onClick={() => navigate("/Welcome")}
+          onClick={() => navigate("/")}
         />
       </div>
     </div>

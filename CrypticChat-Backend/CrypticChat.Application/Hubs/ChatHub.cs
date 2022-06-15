@@ -32,7 +32,7 @@ public class ChatHub : Hub
             SentAt = DateTime.Now,
             Text = message
         };
-        
+        _dataContext.Messages.Add(newMessage);
         var messageSaved = await _dataContext.SaveChangesAsync() > 0;
         if (messageSaved)
         {

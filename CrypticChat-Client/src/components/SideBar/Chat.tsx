@@ -4,9 +4,7 @@ import ChatBox from "../Chat/ChatBox";
 
 export default function Chat() {
   const param = useParams<{ id: string }>();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const chatRoom = searchParams.get("chatRoom");
-  chatConnection.invoke("ConnectToRoom", chatRoom);
+  chatConnection.invoke("ConnectToRoom", param.id);
 
-  return <ChatBox friendId={param.id!} chatRoomId={chatRoom!} />;
+  return <ChatBox friendId={param.id!} />;
 }

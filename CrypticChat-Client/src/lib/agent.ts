@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { store } from "../redux/store";
-import { friend, requestDto } from "./models/friends";
+import { AcceptRequest } from "./models/AcceptRequest";
+import { friend, requestDto } from "./models/Friend";
 import { ChatMessages } from "./models/Message";
 import { UserDetails } from "./models/UserDetails";
 import { UserLogin } from "./models/UserLogin";
@@ -44,19 +45,21 @@ const Search = {
 };
 
 const Requests = {
-  newRequest: () =>
-    requests.get<requestDto[]>("/friend/request/"),
+  newRequest: () => requests.get<requestDto[]>("/friend/request/"),
+  requestAnswer: (body: AcceptRequest) =>
+    requests.post("/friend/request", body),
 };
 
-const AddFriend = {
+const Friend = {
   add: (email: string) => requests.post<string>(`/friend/add/${email}`, {}),
+  getAll: () => requests.get<friend[]>("/friend"),
 };
 
 const agent = {
   Account,
   Messages,
   Search,
-  AddFriend,
+  Friend,
   Requests,
 };
 

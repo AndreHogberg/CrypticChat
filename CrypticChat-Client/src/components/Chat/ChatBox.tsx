@@ -10,14 +10,12 @@ import Outgoing from "./Outgoing";
 
 interface Props {
   friendId: string;
-  chatRoomId: string;
 }
 
-export default function ChatBox({ friendId, chatRoomId }: Props) {
+export default function ChatBox({ friendId }: Props) {
   const [inputText, setInputText] = useState("");
   const { user, chat } = useAppSelector((state) => state);
   const [messages, setMessage] = useState<UserMessage[]>([]);
-  const [chatId, setChatId] = useState("");
 
   useMemo(() => {
     setMessage((state) => {
@@ -32,12 +30,11 @@ export default function ChatBox({ friendId, chatRoomId }: Props) {
     setMessage([]);
     agent.Messages.newChat(friendId).then((mes) => {
       setMessage(mes.messages);
-      setChatId(mes.chatRoomId);
     });
   }, [friendId]);
 
   const click = () => {
-    chatConnection.invoke("NewMessage", inputText, chatRoomId);
+    chatConnection.invoke("NewMessage", inputText, friendId);
     setInputText("");
   };
   return (
