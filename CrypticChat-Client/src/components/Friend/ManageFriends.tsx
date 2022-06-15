@@ -29,7 +29,7 @@ const ManageFriends = () => {
 
   return (
     <div className="flex flex-auto">
-      <div className="w-full flex-row">
+      <div className="w-1/2 flex-row mx-auto">
         <button className="w-1/2 pb-2 border-b-2 border-r-2 border-black">
           Search
         </button>
@@ -53,7 +53,7 @@ const ManageFriends = () => {
           </button>
         </div>
         <div className="justify-center">
-          <ul className="w-1/3">
+          <ul className="">
             {userlist.map((data) => (
               <li className="flex items-center justify-between p-3 hover:text-purple-600">
                 <div>
