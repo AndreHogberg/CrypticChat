@@ -5,6 +5,9 @@ import agent from "../../lib/agent";
 import { friend } from "../../lib/models/friends";
 import FriendList from "../SideBar/Friends/FriendList";
 import Friend from "../SideBar/Friends/Friend";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const AddFriend = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +24,7 @@ const AddFriend = () => {
     const response = await agent.AddFriend.add(email).catch((err) =>
       console.log(err)
     );
+    toast.success(`Sent a request to ${email}`);
   }
 
   return (
@@ -60,6 +64,7 @@ const AddFriend = () => {
           ))}
         </ul>
       </div>
+      
     </div>
   );
 };
