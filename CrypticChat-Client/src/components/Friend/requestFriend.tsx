@@ -1,21 +1,14 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useEffect, useState } from "react";
 import agent from "../../lib/agent";
 import { requestDto } from "../../lib/models/friends";
 
 const requestFriend = () => {
   const [requests, setRequests] = useState<requestDto[]>([]);
-  useEffect(() => {
-    fetchRequests();
-  }, []);
-
-  const fetchRequests = async () => {
-    const data = await agent.Requests.newRequest();
-    console.log(data);
-    setRequests(data);
+  agent.Requests.newRequest().then((data) => setRequests(data));
+  useMemo(() => {
     console.log(requests);
-  };
-
+  }, [requests]);
   return <div>requestFriend</div>;
 };
 
