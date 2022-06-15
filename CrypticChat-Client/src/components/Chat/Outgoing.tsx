@@ -9,7 +9,7 @@ interface Props {
 export default function Outgoing({ Text, Name, Date }: Props) {
   return (
     <div className="flex flex-row justify-end mt-1">
-      <div className="bg-purple-600 rounded pt-1 pb-1 pl-1 pr-1 w-1/2 grid grid-cols-2">
+      <div className="bg-purple-600 rounded pt-1 pb-1 pl-1 pr-1 w-2/5 grid grid-cols-2">
         <div className="col-1">
           <p className="text-xs text-white font-bold">{Name}</p>
         </div>

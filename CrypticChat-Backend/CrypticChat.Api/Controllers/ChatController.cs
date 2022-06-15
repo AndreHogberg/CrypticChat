@@ -22,22 +22,9 @@ public class ChatController : ControllerBase
     [HttpGet("{friendId}")]
     public async Task<IActionResult> ChatMessagesAndInfo(string friendId)
     {
-        var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
-        if (userClaim is null)
-        {
-            return Unauthorized();
-        }
-        var userId = userClaim.Value;
-        var chatRoom = await _context.Friends.SingleOrDefaultAsync(x =>
-            (x.UserOneId == userId || x.UserTwoId == userId) && (x.UserOneId == friendId || x.UserTwoId == friendId));
-        if (chatRoom == null)
-        {
-            return BadRequest();
-        }
-        
-        var messages = await _context.Messages.Where(x => x.FriendId == chatRoom.Id).Include(x => x.Sender).OrderBy(x => x.SentAt).ToListAsync();
+        var messages = await _context.Messages.Where(x => x.FriendId == Guid.Parse(friendId)).Include(x => x.Sender).OrderBy(x => x.SentAt).ToListAsync();
         var messageDtos = MapToMessageDtoList(messages);
-        return Ok(new { Messages = messageDtos, ChatRoomId = chatRoom.Id });
+        return Ok(new { Messages = messageDtos});
     }
 
 

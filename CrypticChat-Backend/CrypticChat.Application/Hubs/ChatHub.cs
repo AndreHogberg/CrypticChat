@@ -19,7 +19,6 @@ public class ChatHub : Hub
 
     public async Task ConnectToRoom(string roomId)
     {
-        await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomId);
         await Groups.AddToGroupAsync(Context.ConnectionId, roomId);
     }
     public async Task NewMessage(string message, string roomId)
