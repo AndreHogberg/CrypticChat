@@ -3,7 +3,7 @@ import ReactTimeAgo from "react-time-ago";
 interface Props {
   Text: string;
   Name: string;
-  Date: Date
+  Date: Date;
 }
 
 export default function Outgoing({ Text, Name, Date }: Props) {
@@ -18,7 +18,7 @@ export default function Outgoing({ Text, Name, Date }: Props) {
             <ReactTimeAgo date={Date} />
           </p>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 break-words">
           <p className="text-white text-sm">{Text}</p>
         </div>
       </div>

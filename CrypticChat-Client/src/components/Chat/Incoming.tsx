@@ -18,7 +18,7 @@ export default function Incoming({ Text, Name, Date }: Props) {
             <ReactTimeAgo date={Date} />
           </p>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 break-words">
           <p className="text-white text-sm">{Text}</p>
         </div>
       </div>

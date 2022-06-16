@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, KeyboardEvent } from "react";
 import agent from "../../lib/agent";
-import {UserMessage } from "../../lib/models/Message";
+import { UserMessage } from "../../lib/models/Message";
 import chatConnection from "../../lib/signalR";
 import { useAppSelector } from "../../redux/hooks";
 import Incoming from "./Incoming";
@@ -57,7 +57,7 @@ export default function ChatBox({ friendId }: Props) {
             )
           )}
       </div>
-      <div className="flex flex-roww-full justify-end items-center">
+      <div className="flex flex-row-full justify-end items-center">
         <input
           value={inputText}
           placeholder="Send Oscar a message"
