@@ -55,13 +55,13 @@ const AddFriend = () => {
         </div>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center space-x-1 space-y-1">
         {userlist.map((data) => (
-          <div className="block rounded-lg shadow-lg bg-white max-w-sm text-center border-2 border-black">
+          <div className="block rounded-lg shadow-lg bg-white w-1/4 text-center border-2 border-black">
             <div className="py-3 px-6 border-b border-gray-300">
               <img
-                src={`https://avatars.dicebear.com/api/adventurer-neutral/${data.username}.svg`}
-                className="w-1/2 rounded-lg"
+                src={`https://avatars.dicebear.com/api/bottts/${data.username}.svg`}
+                className="w-1/4 rounded-full"
                 alt=""
               />
             </div>
@@ -73,12 +73,10 @@ const AddFriend = () => {
               <button
                 type="button"
                 className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                onClick={() => buttonClickAdd(data.email)}
               >
                 <IoMdAddCircleOutline size={20} />
               </button>
-            </div>
-            <div className="py-3 px-6 border-t border-gray-300 text-gray-600">
-              2 days ago
             </div>
           </div>
         ))}
