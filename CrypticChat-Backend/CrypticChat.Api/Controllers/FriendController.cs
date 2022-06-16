@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using CrypticChat.Application.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace CrypticChat.Api.Controllers
 {
@@ -16,11 +18,16 @@ namespace CrypticChat.Api.Controllers
     {
         private readonly DataContext _context;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IHubContext<FriendHub> _friendContext;
+        private readonly UserManager<AppUser> _userManager;
 
-        public FriendController(DataContext context, SignInManager<AppUser> signInManager)
+
+        public FriendController(DataContext context, SignInManager<AppUser> signInManager, IHubContext<FriendHub> friendContext, UserManager<AppUser> userManager)
         {
             _context = context;
             _signInManager = signInManager;
+            _friendContext = friendContext;
+            _userManager = userManager;
         }
 
         [HttpPost("add/{email}")]
@@ -46,7 +53,12 @@ namespace CrypticChat.Api.Controllers
                 IsConfirmed = false
             });
 
-            await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result)
+            {
+                var sender = await _userManager.FindByIdAsync(userClaim.Value);
+                await _friendContext.Clients.User(friendrequest.Id).SendAsync("recieveFriendRequest", sender.UserName);
+            }
             return Ok(friendrequest);
         }
         [HttpGet("request")]
@@ -70,8 +82,15 @@ namespace CrypticChat.Api.Controllers
         [HttpPost("request")]
         public async Task<IActionResult> AnswerRequest([FromBody]RequestAnswer answer)
         {
+            var userClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userClaim is null)
+            {
+                return Unauthorized();
+            }
+            var userId = userClaim.Value;
+            
             if (answer.FriendId is null) return BadRequest("");
-            var friendRequest = await _context.Friends.SingleOrDefaultAsync(fq => fq.Id == Guid.Parse(answer.FriendId));
+            var friendRequest = await _context.Friends.Include(x => x.UserOne).Include(x => x.UserTwo).SingleOrDefaultAsync(fq => fq.Id == Guid.Parse(answer.FriendId));
             if (friendRequest is null)
             {
                 return BadRequest("No pending friend request");
@@ -83,6 +102,23 @@ namespace CrypticChat.Api.Controllers
             else
             {
                 friendRequest.IsConfirmed = true;
+                if (friendRequest.UserOneId == userId)
+                {
+                    await _friendContext.Clients.User(friendRequest.UserTwoId)
+                        .SendAsync("acceptFriend", friendRequest.UserOne.UserName, friendRequest.Id, friendRequest.UserOne.Email);
+                    
+                    return Ok(new FriendDto{Email = friendRequest.UserTwo.Email, 
+                        Username = friendRequest.UserTwo.UserName, 
+                        FriendId = friendRequest.Id.ToString()});
+                }
+                await _friendContext.Clients.User(friendRequest.UserOneId)
+                        .SendAsync("acceptFriend", friendRequest.UserTwo.UserName, friendRequest.Id, friendRequest.UserTwo.Email);
+                    return Ok(new FriendDto
+                    {
+                        Email = friendRequest.UserOne.Email,
+                        Username = friendRequest.UserOne.UserName,
+                        FriendId = friendRequest.Id.ToString()
+                    });
             }
 
             await _context.SaveChangesAsync();
@@ -134,7 +170,7 @@ namespace CrypticChat.Api.Controllers
 
             return Ok(friends);
         }
-
+        
         private async Task<List<FriendDto>> MaptoFriendDto(List<Friend> friends, string userId)
         {
             var friendDtos = new List<FriendDto>();

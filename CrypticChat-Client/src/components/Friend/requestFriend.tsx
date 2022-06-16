@@ -1,13 +1,17 @@
 import React, { useMemo } from "react";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import agent from "../../lib/agent";
 import { requestDto } from "../../lib/models/Friend";
+import { useAppSelector } from "../../redux/hooks";
+import { bulkAdd } from "../../redux/slices/requestSlice";
 import FriendRequestItem from "./FriendRequestItem";
 
 const requestFriend = () => {
-  const [requests, setRequests] = useState<requestDto[]>([]);
+  const { requests } = useAppSelector((state) => state.request);
+  const dispatch = useDispatch();
   useEffect(() => {
-    agent.Requests.newRequest().then((data) => setRequests(data));
+    agent.Requests.newRequest().then((data) => dispatch(bulkAdd(data)));
   }, []);
   return (
     <div className="flex flex-col w-full h-full space-y-1">

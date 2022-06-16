@@ -47,7 +47,7 @@ const Search = {
 const Requests = {
   newRequest: () => requests.get<requestDto[]>("/friend/request/"),
   requestAnswer: (body: AcceptRequest) =>
-    requests.post("/friend/request", body),
+    requests.post<friend>("/friend/request", body),
 };
 
 const Friend = {

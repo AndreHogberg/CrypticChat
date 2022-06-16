@@ -1,6 +1,7 @@
 import { HubConnectionBuilder } from "@microsoft/signalr";
 import { toast } from "react-toastify";
 import { emitMessage } from "../redux/slices/chatSlice";
+import { addFriend } from "../redux/slices/friendSlice";
 import { store } from "../redux/store";
 import { UserMessage } from "./models/Message";
 
@@ -29,7 +30,8 @@ fConnection.on("recieveFriendRequest", (username: string) => {
   toast.success(`${username} has sent you a friend request!`);
 });
 
-fConnection.on("acceptFriend", (username) => {
+fConnection.on("acceptFriend", (username, friendId, email) => {
+  store.dispatch(addFriend({ username, friendId, email }));
   toast.success(`${username} has accepted your friend request!`);
 });
 
